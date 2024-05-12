@@ -43,10 +43,10 @@ function App() {
             <div className='w-full bg-slate-600 bg-opacity-10 text-left px-4 py-3 rounded-xl cursor-pointer border-2 border-slate-600 hover:border-slate-500 hover:bg-slate-500 hover:shadow-lg hover:scale-105 active:scale-90 duration-200'>D. <span>ant</span> </div>
           </div>
         </div>
-        <div className='w-full h-full top-0 left-0 flex justify-between items-center p-3'>
+        {/* <div className='w-full h-full top-0 left-0 flex justify-between items-center p-3'>
           <div className='cursor-pointer hover:scale-105 active:scale-90 duration-100 text-md flex justify-center items-center text-center bg-slate-600 px-2 py-1 rounded-xl'>previus</div>
           <div className='cursor-pointer hover:scale-105 active:scale-90 duration-100 text-md flex justify-center items-center text-center bg-slate-600 px-2 py-1 rounded-xl'>next</div>
-        </div>
+        </div> */}
       </div>
     </>
   )

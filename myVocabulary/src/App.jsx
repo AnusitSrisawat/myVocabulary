@@ -9,33 +9,39 @@ function App() {
 
   useEffect(() => {
     fetch('http://localhost:8081/users')
-      .then(res => res.json)
-      .then(data => setData(data))
+      .then(res => {
+        try {
+          if (res.ok) {
+            return res.json()
+          } else {
+            throw new Error(res)
+          }
+        }
+        catch (err) {
+          console.log(err.message)
+          return err
+        }
+      })
+      .then(resJson => {
+        return resJson.data
+      })
       .catch(err => console.log(err))
   }, [])
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='bg-slate-700 bg-opacity-30 p-10 rounded-3xl flex flex-col justify-center items-center gap-6'>
+        <div className='flex flex-col justify-start items-center gap-4'>
+          <div className='rounded-full bg-red-600 w-8 h-8'></div>
+          <div className='break-words whitespace-normal'>มดตัวน้อยตัวนิด ....... ......... ............. ................... .......</div>
+        </div>
+        <div className='w-full grid grid-cols-1 md:grid-cols-2 gap-3 justify-center items-center'>
+          <div className='w-full bg-slate-600 bg-opacity-10 text-left px-4 py-3 rounded-xl cursor-pointer border-2 border-slate-600 hover:border-slate-500 hover:bg-slate-500 active:scale-90 duration-200'>A. <span>ANT!!!!</span> </div>
+          <div className='w-full bg-slate-600 bg-opacity-10 text-left px-4 py-3 rounded-xl cursor-pointer border-2 border-slate-600 hover:border-slate-500 hover:bg-slate-500 active:scale-90 duration-200'>B. <span>ant little</span> </div>
+          <div className='w-full bg-slate-600 bg-opacity-10 text-left px-4 py-3 rounded-xl cursor-pointer border-2 border-slate-600 hover:border-slate-500 hover:bg-slate-500 active:scale-90 duration-200'>C. <span>ant tiny</span> </div>
+          <div className='w-full bg-slate-600 bg-opacity-10 text-left px-4 py-3 rounded-xl cursor-pointer border-2 border-slate-600 hover:border-slate-500 hover:bg-slate-500 active:scale-90 duration-200'>D. <span>ant</span> </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }

@@ -3,6 +3,8 @@ import Link from 'next/link';
 import "../app/globals.css";
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import axios from 'axios'; // Import Axios for making HTTP requests
+import { log } from 'console';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -17,26 +19,92 @@ export default function Words() {
   const [selectedWordTypeEdit, setSelectedWordTypeEdit] = useState("")
 
   useEffect(() => {
-    fetch('http://localhost:8081/users')
-      .then((res: any) => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          throw new Error(res)
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8081/api/words');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
-      })
-      .then(resJson => {
-        return resJson.data
-      })
-      .catch(err => console.log(err))
-  }, [])
+        const responseData = await response.json();
+        setData(responseData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+  const [formDataAdd, setFormDataAdd] = useState({
+    inThai: '',
+    inEnglish: '',
+    inJapanese: '',
+    wordType: ''
+  });
+
+  const [formDataEdit, setFormDataEdit] = useState({
+    inThai: '',
+    inEnglish: '',
+    inJapanese: '',
+    wordType: ''
+  });
+
+  const handleChangeAdd = (e: any) => {
+    setFormDataAdd({
+      ...formDataAdd,
+      // [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmitAdd = async (e: any) => {
+    e.preventDefault();
+
+    try {
+      console.log("formDataAdd", formDataAdd);
+
+      // Send the form data to your backend API endpoint
+      await axios.post('http://localhost:8081/api/words/add', formDataAdd);
+      alert('Word added successfully');
+      // Optionally, you can reset the form fields after successful submission
+      setFormDataAdd({
+        inThai: '',
+        inEnglish: '',
+        inJapanese: '',
+        wordType: ''
+      });
+    } catch (error) {
+      console.error('Error adding word:', error);
+      alert('Failed to add word. Please try again later.');
+    }
+  };
+  const handleSubmitEdit = async (e: any) => {
+    e.preventDefault();
+
+    try {
+      // Send the form data to your backend API endpoint
+      await axios.post('http://localhost:8081/api/words/edit', formDataEdit);
+      alert('Word edited successfully');
+      // Optionally, you can reset the form fields after successful submission
+      setFormDataEdit({
+        inThai: '',
+        inEnglish: '',
+        inJapanese: '',
+        wordType: ''
+      });
+    } catch (error) {
+      console.error('Error editing word:', error);
+      alert('Failed to edit word. Please try again later.');
+    }
+  };
+
 
   return (
     <>
-      <div className="relative flex w-screen max-w-screen min-h-screen h-fit flex-col md:flex-row items-center justify-center gap-10 md:gap-20 p-10 md:p-0 overflow-y-auto overflow-x-hidden">
+      <div className="relative flex w-screen max-w-screen min-h-screen h-fit flex-col md:flex-row items-center justify-center gap-10 md:gap-20 p-10 md:px-10 overflow-y-auto overflow-x-hidden">
 
         <div className='flex flex-col gap-10 md:gap-0 justify-between items-center w-fit md:h-[90vh]'>
-          
+
           <div className='relative bg-slate-600 shadow-xl bg-opacity-40 rounded-3xl flex flex-col justify-center items-center'>
             <div className='p-10 rounded-3xl flex flex-col justify-center items-center gap-6'>
               <div className='flex flex-col justify-start items-center gap-2'>
@@ -48,11 +116,11 @@ export default function Words() {
               </div>
               <div className='w-full flex flex-col gap-4 justify-center items-center'>
 
-                <form>
+                <form onSubmit={handleSubmitAdd}>
                   <div className='w-full flex flex-col justify-center items-center gap-4 min-w-52'>
 
                     <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
-                      <label htmlFor="In-Thai" className="block text-sm text-gray-200">
+                      <label htmlFor="In-Thai" className="block text-sm text-gray-200 whitespace-nowrap">
                         In Thai
                       </label>
                       <div className="w-full md:w-32">
@@ -62,12 +130,14 @@ export default function Words() {
                           id="In-Thai"
                           autoComplete="given-name"
                           className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm"
+                          value={formDataAdd.inThai}
+                          onChange={handleChangeAdd}
                         />
                       </div>
                     </div>
 
                     <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
-                      <label htmlFor="In-English" className="block text-sm text-gray-200">
+                      <label htmlFor="In-English" className="block text-sm text-gray-200 whitespace-nowrap">
                         In English
                       </label>
                       <div className="w-full md:w-32">
@@ -77,12 +147,14 @@ export default function Words() {
                           id="In-English"
                           autoComplete="given-name"
                           className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm"
+                          value={formDataAdd.inEnglish}
+                          onChange={handleChangeAdd}
                         />
                       </div>
                     </div>
 
                     <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
-                      <label htmlFor="In-Japanese" className="block text-sm text-gray-200">
+                      <label htmlFor="In-Japanese" className="block text-sm text-gray-200 whitespace-nowrap">
                         In Japanese
                       </label>
                       <div className="w-full md:w-32">
@@ -92,15 +164,17 @@ export default function Words() {
                           id="In-Japanese"
                           autoComplete="given-name"
                           className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm"
+                          value={formDataAdd.inJapanese}
+                          onChange={handleChangeAdd}
                         />
                       </div>
                     </div>
 
-                    <Listbox value={selectedWordTypeAdd} onChange={setSelectedWordTypeAdd}>
+                    <Listbox value={formDataAdd.inJapanese} onChange={handleChangeAdd}>
                       {({ open }) => (
                         <>
                           <div className="relative flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
-                            <label htmlFor="WordType" className="block text-sm text-gray-200">
+                            <label htmlFor="WordType" className="block text-sm text-gray-200 whitespace-nowrap">
                               Word Type
                             </label>
                             <div className="w-full md:w-32">
@@ -197,7 +271,7 @@ export default function Words() {
                   <div className='w-full flex flex-col justify-center items-center gap-4 min-w-52'>
 
                     <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
-                      <label htmlFor="In-Thai" className="block text-sm text-gray-200">
+                      <label htmlFor="In-Thai" className="block text-sm text-gray-200 whitespace-nowrap">
                         In Thai
                       </label>
                       <div className="w-full md:w-32">
@@ -212,7 +286,7 @@ export default function Words() {
                     </div>
 
                     <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
-                      <label htmlFor="In-English" className="block text-sm text-gray-200">
+                      <label htmlFor="In-English" className="block text-sm text-gray-200 whitespace-nowrap">
                         In English
                       </label>
                       <div className="w-full md:w-32">
@@ -227,7 +301,7 @@ export default function Words() {
                     </div>
 
                     <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
-                      <label htmlFor="In-Japanese" className="block text-sm text-gray-200">
+                      <label htmlFor="In-Japanese" className="block text-sm text-gray-200 whitespace-nowrap">
                         In Japanese
                       </label>
                       <div className="w-full md:w-32">
@@ -245,7 +319,7 @@ export default function Words() {
                       {({ open }) => (
                         <>
                           <div className="relative flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
-                            <label htmlFor="WordType" className="block text-sm text-gray-200">
+                            <label htmlFor="WordType" className="block text-sm text-gray-200 whitespace-nowrap">
                               Word Type
                             </label>
                             <div className="w-full md:w-32">
@@ -333,13 +407,13 @@ export default function Words() {
 
         </div>
 
-        <div className='relative bg-slate-600 shadow-xl bg-opacity-40 rounded-3xl flex flex-col justify-start items-start gap-4 p-5 w-full md:w-auto overflow-auto md:h-[90vh]'>
-          <div className='flex flex-col md:flex-row w-full justify-between items-center gap-4'>
-            <div className='flex flex-row justify-center md:justify-start items-center gap-4 w-full text-2xl font-bold px-4'>
+        <div className='relative bg-slate-600 shadow-xl bg-opacity-40 rounded-3xl flex flex-col justify-start items-center md:items-start gap-4 p-5 w-fit overflow-auto md:h-[90vh]'>
+          <div className='flex flex-col md:flex-row w-fit md:w-full justify-between items-center gap-y-4'>
+            <div className='flex flex-row justify-center md:justify-start items-center gap-4 w-fit text-2xl font-bold px-4'>
               Words Database
             </div>
-            <div className="flex flex-row justify-end items-center gap-4 w-full">
-              <div className="w-full md:w-52">
+            <div className="flex flex-row justify-end items-center gap-4 w-fit">
+              <div className="w-40">
                 <input
                   type="text"
                   name="Search"
@@ -356,120 +430,26 @@ export default function Words() {
             </div>
           </div>
 
-          <div className='relative flex flex-col justify-start items-start md:px-5 w-full md:w-auto overflow-auto max-h-[50vh] md:max-h-screen'>
-            <table className="table-auto">
+          <div className='relative flex flex-col justify-start items-start md:px-5 w-fit overflow-auto max-h-[50vh] md:max-h-screen'>
+            <table className="table-auto text-base">
               <thead>
-                <tr className='border-b-2 border-indigo-800'>
-                  <th className='px-4 py-3'>Song</th>
-                  <th className='px-4 py-3'>Artist</th>
-                  <th className='px-4 py-3'>Artist</th>
-                  <th className='px-4 py-3'>Year</th>
+                <tr className='border-b-2 border-indigo-800 text-center'>
+                  <th className='px-4 py-3 font-semibold'>In Thai</th>
+                  <th className='px-4 py-3 font-semibold'>In English</th>
+                  <th className='px-4 py-3 font-semibold'>In Japanese</th>
+                  <th className='px-4 py-3 font-semibold'>Word Type</th>
                 </tr>
               </thead>
               <tbody>
 
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                  <td className='px-4 py-3'>Malcolm Lockyer</td>
-                  <td className='px-4 py-3'>Malcolm Lockyer</td>
-                  <td className='px-4 py-3'>1961</td>
-                </tr>
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>Witchy Woman</td>
-                  <td className='px-4 py-3'>The Eagles</td>
-                  <td className='px-4 py-3'>The Eagles</td>
-                  <td className='px-4 py-3'>1972</td>
-                </tr>
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>Shining Star</td>
-                  <td className='px-4 py-3'>Earth, Wind, and Fire</td>
-                  <td className='px-4 py-3'>Earth, Wind, and Fire</td>
-                  <td className='px-4 py-3'>1975</td>
-                </tr>
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                  <td className='px-4 py-3'>Malcolm Lockyer</td>
-                  <td className='px-4 py-3'>Malcolm Lockyer</td>
-                  <td className='px-4 py-3'>1961</td>
-                </tr>
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>Witchy Woman</td>
-                  <td className='px-4 py-3'>The Eagles</td>
-                  <td className='px-4 py-3'>The Eagles</td>
-                  <td className='px-4 py-3'>1972</td>
-                </tr>
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>Shining Star</td>
-                  <td className='px-4 py-3'>Earth, Wind, and Fire</td>
-                  <td className='px-4 py-3'>Earth, Wind, and Fire</td>
-                  <td className='px-4 py-3'>1975</td>
-                </tr>
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                  <td className='px-4 py-3'>Malcolm Lockyer</td>
-                  <td className='px-4 py-3'>Malcolm Lockyer</td>
-                  <td className='px-4 py-3'>1961</td>
-                </tr>
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>Witchy Woman</td>
-                  <td className='px-4 py-3'>The Eagles</td>
-                  <td className='px-4 py-3'>The Eagles</td>
-                  <td className='px-4 py-3'>1972</td>
-                </tr>
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                  <td className='px-4 py-3'>Malcolm Lockyer</td>
-                  <td className='px-4 py-3'>Malcolm Lockyer</td>
-                  <td className='px-4 py-3'>1961</td>
-                </tr>
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>Witchy Woman</td>
-                  <td className='px-4 py-3'>The Eagles</td>
-                  <td className='px-4 py-3'>The Eagles</td>
-                  <td className='px-4 py-3'>1972</td>
-                </tr>
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>Shining Star</td>
-                  <td className='px-4 py-3'>Earth, Wind, and Fire</td>
-                  <td className='px-4 py-3'>Earth, Wind, and Fire</td>
-                  <td className='px-4 py-3'>1975</td>
-                </tr>
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                  <td className='px-4 py-3'>Malcolm Lockyer</td>
-                  <td className='px-4 py-3'>Malcolm Lockyer</td>
-                  <td className='px-4 py-3'>1961</td>
-                </tr>
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>Witchy Woman</td>
-                  <td className='px-4 py-3'>The Eagles</td>
-                  <td className='px-4 py-3'>The Eagles</td>
-                  <td className='px-4 py-3'>1972</td>
-                </tr>
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>Shining Star</td>
-                  <td className='px-4 py-3'>Earth, Wind, and Fire</td>
-                  <td className='px-4 py-3'>Earth, Wind, and Fire</td>
-                  <td className='px-4 py-3'>1975</td>
-                </tr>
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                  <td className='px-4 py-3'>Malcolm Lockyer</td>
-                  <td className='px-4 py-3'>Malcolm Lockyer</td>
-                  <td className='px-4 py-3'>1961</td>
-                </tr>
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>Witchy Woman</td>
-                  <td className='px-4 py-3'>The Eagles</td>
-                  <td className='px-4 py-3'>The Eagles</td>
-                  <td className='px-4 py-3'>1972</td>
-                </tr>
-                <tr className='border-b-2 border-indigo-950'>
-                  <td className='px-4 py-3'>Shining Star</td>
-                  <td className='px-4 py-3'>Earth, Wind, and Fire</td>
-                  <td className='px-4 py-3'>Earth, Wind, and Fire</td>
-                  <td className='px-4 py-3'>1975</td>
-                </tr>
+                {data.map((item: any) => (
+                  <tr key={item.id} className='border-b-2 border-indigo-950 text-center'>
+                    <td className='px-4 py-3 font-normal'>{item.in_thai == "" ? "-" : item.in_thai}</td>
+                    <td className='px-4 py-3 font-normal'>{item.in_english == "" ? "-" : item.in_english}</td>
+                    <td className='px-4 py-3 font-normal'>{item.in_japanese == "" ? "-" : item.in_japanese}</td>
+                    <td className='px-4 py-3 font-normal'>{item.word_type == "" ? "-" : item.word_type}</td>
+                  </tr>
+                ))}
 
               </tbody>
             </table>

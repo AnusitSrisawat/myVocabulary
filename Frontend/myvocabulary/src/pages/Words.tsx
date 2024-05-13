@@ -57,6 +57,14 @@ export default function Words() {
       wordType: selectedOption
     });
   };
+  const resetFormData = () => {
+    setFormData({
+      inThai: '',
+      inEnglish: '',
+      inJapanese: '',
+      wordType: ''
+    });
+  };
 
   const handleSubmitAdd = async (e: any) => {
     e.preventDefault();
@@ -64,7 +72,7 @@ export default function Words() {
     try {
 
       await axios.post('http://localhost:8081/api/words/add', formData);
-      
+
       setFormData({
         inThai: '',
         inEnglish: '',
@@ -95,12 +103,12 @@ export default function Words() {
 
   return (
     <>
-      <div className="relative flex w-screen max-w-screen min-h-screen h-fit flex-col lg:flex-row items-center lg:items-start justify-center gap-10 md:gap-20 p-10 md:px-10 overflow-y-auto overflow-x-hidden">
+      <div className="relative flex w-screen max-w-screen min-h-screen h-fit flex-col lg:flex-row items-center lg:items-start justify-start lg:justify-center gap-10 md:gap-20 p-10 md:px-10 overflow-y-auto overflow-x-hidden">
 
-        <div className='flex flex-col gap-10 md:gap-20 justify-between items-center w-fit md:h-fit lg:max-h-[90vh] overflow-y-auto'>
+        <div className='flex flex-col gap-10 md:gap-20 justify-between items-center w-fit md:h-fit lg:max-h-[90vh]'>
 
           <div className='relative bg-slate-600 shadow-xl bg-opacity-40 rounded-3xl flex flex-col justify-center items-center'>
-            <div className='p-10 rounded-3xl flex flex-col justify-center items-center gap-6'>
+            <div className='p-5 lg:p-10 rounded-3xl flex flex-col justify-center items-center gap-6'>
               <div className='flex flex-col justify-start items-center gap-2'>
                 <div className='rounded-full w-10 h-10'>
                   {/* <img src="/words.svg" alt="words" className='w-full h-full hover:scale-105 active:scale-90 duration-200 cursor-pointer /> */}
@@ -111,13 +119,13 @@ export default function Words() {
               <div className='w-full flex flex-col gap-4 justify-center items-center'>
 
                 <form onSubmit={handleSubmitAdd}>
-                  <div className='w-full flex flex-col justify-center items-center gap-4 min-w-52'>
+                  <div className='w-full grid grid-cols-2 lg:flex flex-col justify-center items-center gap-4 min-w-52'>
 
-                    <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
+                    <div className="flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2 lg:gap-4 w-full">
                       <label htmlFor="inThai" className="block text-sm text-gray-200 whitespace-nowrap">
                         In Thai
                       </label>
-                      <div className="w-full md:w-32">
+                      <div className="w-full lg:w-32">
                         <input
                           type="text"
                           name="inThai"
@@ -130,11 +138,11 @@ export default function Words() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
+                    <div className="flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2 lg:gap-4 w-full">
                       <label htmlFor="inEnglish" className="block text-sm text-gray-200 whitespace-nowrap">
                         In English
                       </label>
-                      <div className="w-full md:w-32">
+                      <div className="w-full lg:w-32">
                         <input
                           type="text"
                           name="inEnglish"
@@ -147,11 +155,11 @@ export default function Words() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
+                    <div className="flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2 lg:gap-4 w-full">
                       <label htmlFor="inJapanese" className="block text-sm text-gray-200 whitespace-nowrap">
                         In Japanese
                       </label>
-                      <div className="w-full md:w-32">
+                      <div className="w-full lg:w-32">
                         <input
                           type="text"
                           name="inJapanese"
@@ -170,11 +178,11 @@ export default function Words() {
                       onChange={handleChangeAddSelect}>
                       {({ open }) => (
                         <>
-                          <div className="relative flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
+                          <div className="relative flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2 lg:gap-4 w-full">
                             <label htmlFor="wordType" className="block text-sm text-gray-200 whitespace-nowrap">
                               Word Type
                             </label>
-                            <div className="w-full md:w-32">
+                            <div className="w-full lg:w-32">
                               <Listbox.Button className="relative cursor-pointer w-full min-h-8 rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
                                 <span className="flex items-center">
                                   {/* <img src={selectedWordTypeAdd.avatar} alt="" className="h-5 w-5 flex-shrink-0 rounded-full" /> */}
@@ -265,13 +273,13 @@ export default function Words() {
               <div className='w-full flex flex-col gap-4 justify-center items-center'>
 
                 <form>
-                  <div className='w-full flex flex-col justify-center items-center gap-4 min-w-52'>
+                  <div className='w-full grid grid-cols-2 lg:flex flex-col justify-center items-center gap-4 min-w-52'>
 
-                    <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
+                    <div className="flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2 md:gap-4 w-full">
                       <label htmlFor="In-Thai" className="block text-sm text-gray-200 whitespace-nowrap">
                         In Thai
                       </label>
-                      <div className="w-full md:w-32">
+                      <div className="w-full lg:w-32">
                         <input
                           type="text"
                           name="In-Thai"
@@ -282,11 +290,11 @@ export default function Words() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
+                    <div className="flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2 md:gap-4 w-full">
                       <label htmlFor="In-English" className="block text-sm text-gray-200 whitespace-nowrap">
                         In English
                       </label>
-                      <div className="w-full md:w-32">
+                      <div className="w-full lg:w-32">
                         <input
                           type="text"
                           name="In-English"
@@ -297,11 +305,11 @@ export default function Words() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
+                    <div className="flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2 md:gap-4 w-full">
                       <label htmlFor="In-Japanese" className="block text-sm text-gray-200 whitespace-nowrap">
                         In Japanese
                       </label>
-                      <div className="w-full md:w-32">
+                      <div className="w-full lg:w-32">
                         <input
                           type="text"
                           name="In-Japanese"
@@ -315,11 +323,11 @@ export default function Words() {
                     <Listbox value={selectedWordTypeEdit} onChange={setSelectedWordTypeEdit}>
                       {({ open }) => (
                         <>
-                          <div className="relative flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
+                          <div className="relative flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2 md:gap-4 w-full">
                             <label htmlFor="WordType" className="block text-sm text-gray-200 whitespace-nowrap">
                               Word Type
                             </label>
-                            <div className="w-full md:w-32">
+                            <div className="w-full lg:w-32">
                               <Listbox.Button className="relative cursor-pointer w-full min-h-8 rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
                                 <span className="flex items-center">
                                   {/* <img src={selectedWordTypeEdit.avatar} alt="" className="h-5 w-5 flex-shrink-0 rounded-full" /> */}
@@ -386,7 +394,8 @@ export default function Words() {
                   </div>
 
                   <div className="mt-6 flex items-center justify-center gap-x-6">
-                    <button type="button" className="text-sm font-semibold leading-6 text-gray-200">
+                    <button type="button" className="text-sm font-semibold leading-6 text-gray-200"
+                      onClick={() => (resetFormData())}>
                       Cancel
                     </button>
                     <button
@@ -432,24 +441,24 @@ export default function Words() {
               <table className="table-auto text-base">
                 <thead>
                   <tr className='border-b-2 border-indigo-800 text-center'>
-                    <th className='px-4 py-3 font-semibold border-r-2 border-indigo-800'> </th>
-                    <th className='px-4 py-3 font-semibold'>In Thai</th>
-                    <th className='px-4 py-3 font-semibold'>In English</th>
-                    <th className='px-4 py-3 font-semibold'>In Japanese</th>
-                    <th className='px-4 py-3 font-semibold'>Word Type</th>
-                    <th className='px-4 py-3 font-semibold'>Actions</th>
+                    <th className='p-5 font-semibold border-r-2 border-indigo-800'> </th>
+                    <th className='p-5 font-semibold'>In Thai</th>
+                    <th className='p-5 font-semibold'>In English</th>
+                    <th className='p-5 font-semibold'>In Japanese</th>
+                    <th className='p-5 font-semibold'>Word Type</th>
+                    <th className='p-5 font-semibold'>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
 
                   {data.map((item: any, index: number) => (
                     <tr key={item.id} className='border-b-2 border-indigo-950 text-center'>
-                      <td className='px-4 py-3 font-normal border-r-2 border-indigo-800'>{index + 1}</td>
-                      <td className='px-4 py-3 font-normal'>{item.in_thai == "" ? "-" : item.in_thai}</td>
-                      <td className='px-4 py-3 font-normal'>{item.in_english == "" ? "-" : item.in_english}</td>
-                      <td className='px-4 py-3 font-normal'>{item.in_japanese == "" ? "-" : item.in_japanese}</td>
-                      <td className='px-4 py-3 font-normal'>{item.word_type == "" ? "-" : item.word_type}</td>
-                      <td className='px-4 py-3 font-normal flex flex-row gap-4 justify-center items-center'>
+                      <td className='p-5 font-normal border-r-2 border-indigo-800'>{index + 1}</td>
+                      <td className='p-5 font-normal'>{item.in_thai == "" ? "-" : item.in_thai}</td>
+                      <td className='p-5 font-normal'>{item.in_english == "" ? "-" : item.in_english}</td>
+                      <td className='p-5 font-normal'>{item.in_japanese == "" ? "-" : item.in_japanese}</td>
+                      <td className='p-5 font-normal'>{item.word_type == "" ? "-" : item.word_type}</td>
+                      <td className='p-5 font-normal flex flex-row gap-4 justify-center items-center'>
                         <div className='rounded-full w-6 h-6' onClick={() => deleteWord(item.id)}>
                           <img src="/bin.svg" alt="bin" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
                         </div>

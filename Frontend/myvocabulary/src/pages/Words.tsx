@@ -413,7 +413,7 @@ export default function Words() {
 
         </div>
 
-        <div className='relative bg-slate-600 shadow-xl bg-opacity-40 rounded-3xl flex flex-col justify-start items-center md:items-start gap-4 p-5 w-full md:w-fit md:h-fit lg:max-h-[90vh]'>
+        <div className='relative bg-slate-700 shadow-xl bg-opacity-40 rounded-3xl flex flex-col justify-start items-center md:items-start gap-4 p-5 w-full md:w-fit md:h-fit lg:max-h-[90vh]'>
           <div className='flex flex-col md:flex-row w-fit md:w-full justify-between items-center gap-y-4'>
             <div className='flex flex-row justify-center md:justify-start items-center gap-4 w-fit text-2xl font-bold px-4'>
               Words Database
@@ -437,11 +437,11 @@ export default function Words() {
           </div>
 
           <div className='w-full overflow-auto'>
-            <div className='relative flex flex-col justify-start items-start md:px-5 w-fit max-h-[50vh] md:max-h-[80vh]'>
-              <table className="table-auto text-base">
+            <div className='relative flex flex-col justify-start items-start md:px-5 md:py-3 w-fit max-h-[50vh] md:max-h-[80vh] rounded-3xl bg-slate-600 shadow-xl bg-opacity-30'>
+              <table className="table-auto text-base rounded-3xl">
                 <thead>
-                  <tr className='border-b-2 border-indigo-800 text-center'>
-                    <th className='p-5 font-semibold border-r-2 border-indigo-800'> </th>
+                  <tr className='border-b-2 border-indigo-600 text-center'>
+                    <th className='p-5 font-semibold border-r-2 border-indigo-600'> </th>
                     <th className='p-5 font-semibold'>In Thai</th>
                     <th className='p-5 font-semibold'>In English</th>
                     <th className='p-5 font-semibold'>In Japanese</th>
@@ -452,8 +452,8 @@ export default function Words() {
                 <tbody>
 
                   {data.map((item: any, index: number) => (
-                    <tr key={item.id} className='border-b-2 border-indigo-950 text-center'>
-                      <td className='p-5 font-normal border-r-2 border-indigo-800'>{index + 1}</td>
+                    <tr key={item.id} className={`border-b-2 text-center ${index === data.length - 1 ? 'border-transparent' : 'border-indigo-800'}`}>
+                      <td className='p-5 font-normal border-r-2 border-indigo-600'>{index + 1}</td>
                       <td className='p-5 font-normal'>{item.in_thai == "" ? "-" : item.in_thai}</td>
                       <td className='p-5 font-normal'>{item.in_english == "" ? "-" : item.in_english}</td>
                       <td className='p-5 font-normal'>{item.in_japanese == "" ? "-" : item.in_japanese}</td>

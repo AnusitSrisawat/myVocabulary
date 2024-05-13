@@ -113,7 +113,7 @@ export default function Words() {
                   {/* <img src="/words.svg" alt="words" className='w-full h-full hover:scale-105 active:scale-90 duration-200 cursor-pointer /> */}
                   <img src="/wordsWhite.svg" alt="words" className='w-full h-full hover:scale-105 active:scale-90 duration-200 cursor-pointer' />
                 </div>
-                <div className='break-words whitespace-normal text-xl'>New Word</div>
+                {/* <div className='break-words whitespace-normal text-xl'>Form</div> */}
               </div>
               <div className='w-full flex flex-col gap-4 justify-center items-center'>
 

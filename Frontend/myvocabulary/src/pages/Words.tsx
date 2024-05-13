@@ -37,14 +37,7 @@ export default function Words() {
     }
   };
 
-  const [formDataAdd, setFormDataAdd] = useState({
-    inThai: '',
-    inEnglish: '',
-    inJapanese: '',
-    wordType: ''
-  });
-
-  const [formDataEdit, setFormDataEdit] = useState({
+  const [formData, setFormData] = useState({
     inThai: '',
     inEnglish: '',
     inJapanese: '',
@@ -53,8 +46,8 @@ export default function Words() {
 
   const handleChangeAdd = (e: any) => {
 
-    setFormDataAdd({
-      ...formDataAdd,
+    setFormData({
+      ...formData,
       [e.target.name]: e.target.value
     });
 
@@ -62,13 +55,13 @@ export default function Words() {
 
 
   const handleChangeAddSelect = (selectedOption: any) => {
-    setFormDataAdd({
-      ...formDataAdd,
+    setFormData({
+      ...formData,
       wordType: selectedOption
     });
 
     console.log("selectedOption", selectedOption);
-    console.log("formDataAdd", formDataAdd);
+    console.log("formData", formData);
 
   };
 
@@ -76,13 +69,13 @@ export default function Words() {
     e.preventDefault();
 
     try {
-      console.log("formDataAdd", formDataAdd);
+      console.log("formData", formData);
 
       // Send the form data to your backend API endpoint
-      await axios.post('http://localhost:8081/api/words/add', formDataAdd);
+      await axios.post('http://localhost:8081/api/words/add', formData);
       // alert('Word added successfully');
       // Optionally, you can reset the form fields after successful submission
-      setFormDataAdd({
+      setFormData({
         inThai: '',
         inEnglish: '',
         inJapanese: '',
@@ -94,29 +87,6 @@ export default function Words() {
     } catch (error) {
       console.error('Error adding word:', error);
       // alert('Failed to add word. Please try again later.');
-    }
-  };
-
-  const handleSubmitEdit = async (e: any) => {
-    e.preventDefault();
-
-    try {
-      // Send the form data to your backend API endpoint
-      await axios.post('http://localhost:8081/api/words/edit', formDataEdit);
-      // alert('Word edited successfully');
-      // Optionally, you can reset the form fields after successful submission
-      setFormDataEdit({
-        inThai: '',
-        inEnglish: '',
-        inJapanese: '',
-        wordType: ''
-      });
-
-      fetchData();
-
-    } catch (error) {
-      console.error('Error editing word:', error);
-      // alert('Failed to edit word. Please try again later.');
     }
   };
 
@@ -173,7 +143,7 @@ export default function Words() {
                           id="inThai"
                           autoComplete="given-name"
                           className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm"
-                          value={formDataAdd.inThai}
+                          value={formData.inThai}
                           onChange={handleChangeAdd}
                         />
                       </div>
@@ -190,7 +160,7 @@ export default function Words() {
                           id="inEnglish"
                           autoComplete="given-name"
                           className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm"
-                          value={formDataAdd.inEnglish}
+                          value={formData.inEnglish}
                           onChange={handleChangeAdd}
                         />
                       </div>
@@ -207,7 +177,7 @@ export default function Words() {
                           id="inJapanese"
                           autoComplete="given-name"
                           className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm"
-                          value={formDataAdd.inJapanese}
+                          value={formData.inJapanese}
                           onChange={handleChangeAdd}
                         />
                       </div>
@@ -215,7 +185,7 @@ export default function Words() {
 
                     <Listbox
                       name="wordType"
-                      value={formDataAdd.wordType}
+                      value={formData.wordType}
                       onChange={handleChangeAddSelect}>
                       {({ open }) => (
                         <>

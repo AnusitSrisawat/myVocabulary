@@ -45,36 +45,26 @@ export default function Words() {
   });
 
   const handleChangeAdd = (e: any) => {
-
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
-
   };
-
 
   const handleChangeAddSelect = (selectedOption: any) => {
     setFormData({
       ...formData,
       wordType: selectedOption
     });
-
-    console.log("selectedOption", selectedOption);
-    console.log("formData", formData);
-
   };
 
   const handleSubmitAdd = async (e: any) => {
     e.preventDefault();
 
     try {
-      console.log("formData", formData);
 
-      // Send the form data to your backend API endpoint
       await axios.post('http://localhost:8081/api/words/add', formData);
-      // alert('Word added successfully');
-      // Optionally, you can reset the form fields after successful submission
+      
       setFormData({
         inThai: '',
         inEnglish: '',
@@ -86,28 +76,19 @@ export default function Words() {
 
     } catch (error) {
       console.error('Error adding word:', error);
-      // alert('Failed to add word. Please try again later.');
     }
   };
 
   const deleteWord = async (id: number) => {
     try {
-      // Make a DELETE request to the API endpoint with the specified ID
       const response = await axios.delete(`http://localhost:8081/api/words/${id}`);
-
-      // alert('Word delete successfully');
 
       fetchData();
 
-      // If the request is successful, log the response message
       console.log(response.data.message);
 
-      // Optionally, you can perform additional actions after deleting the word
     } catch (error) {
-      // If an error occurs, log the error message
       console.error('Error deleting word:', error);
-
-      // Optionally, handle the error or display an error message to the user
     }
   };
 
@@ -197,7 +178,7 @@ export default function Words() {
                               <Listbox.Button className="relative cursor-pointer w-full min-h-8 rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
                                 <span className="flex items-center">
                                   {/* <img src={selectedWordTypeAdd.avatar} alt="" className="h-5 w-5 flex-shrink-0 rounded-full" /> */}
-                                  <span className="block">{selectedWordTypeAdd}</span>
+                                  <span className="block">{formData.wordType}</span>
                                 </span>
                                 <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
                                   <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />

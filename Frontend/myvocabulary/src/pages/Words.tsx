@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import "../app/globals.css";
 
-export default function Setting() {
+export default function Words() {
   const [count, setCount] = useState(0)
   const [data, setData] = useState([])
 
@@ -27,7 +27,7 @@ export default function Setting() {
           <div className='p-10 rounded-3xl flex flex-col justify-center items-center gap-6'>
             <div className='flex flex-col justify-start items-center gap-4'>
               <div className='rounded-full w-10 h-10'>
-                {/* <img src="/setting.svg" alt="setting" /> */}
+                {/* <img src="/setting.svg" alt="setting" className='w-full h-full hover:scale-105 active:scale-90 cursor-pointer /> */}
                 <img src="/settingWhite.svg" alt="setting" className='w-full h-full hover:scale-105 active:scale-90 cursor-pointer' />
               </div>
               <div className='break-words whitespace-normal'>New Word</div>

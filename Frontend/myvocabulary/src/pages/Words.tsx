@@ -32,9 +32,9 @@ export default function Words() {
 
   return (
     <>
-      <div className="relative flex w-screen max-w-screen min-h-screen h-fit flex-col md:flex-row items-center justify-center gap-10 md:gap-20 overflow-y-auto overflow-x-hidden">
+      <div className="relative flex w-screen max-w-screen min-h-screen h-fit flex-col md:flex-row items-center justify-center gap-10 md:gap-20 p-10 md:p-0 overflow-y-auto overflow-x-hidden">
 
-        <div className='flex flex-col gap-10 justify-start items-center w-fit h-[90vh]'>
+        <div className='flex flex-col gap-10 md:gap-0 justify-between items-center w-fit md:h-[90vh]'>
           
           <div className='relative bg-slate-600 shadow-xl bg-opacity-40 rounded-3xl flex flex-col justify-center items-center'>
             <div className='p-10 rounded-3xl flex flex-col justify-center items-center gap-6'>
@@ -332,9 +332,9 @@ export default function Words() {
 
         </div>
 
-        <div className='relative bg-slate-600 shadow-xl bg-opacity-40 rounded-3xl flex flex-col justify-start items-start gap-4 p-5 w-full md:w-auto overflow-auto h-[90vh]'>
-          <div className='flex flex-row w-full justify-between items-center'>
-            <div className='flex flex-row justify-start items-center gap-4 w-full text-2xl font-bold px-4'>
+        <div className='relative bg-slate-600 shadow-xl bg-opacity-40 rounded-3xl flex flex-col justify-start items-start gap-4 p-5 w-full md:w-auto overflow-auto md:h-[90vh]'>
+          <div className='flex flex-col md:flex-row w-full justify-between items-center gap-4'>
+            <div className='flex flex-row justify-center md:justify-start items-center gap-4 w-full text-2xl font-bold px-4'>
               Words Database
             </div>
             <div className="flex flex-row justify-end items-center gap-4 w-full">
@@ -344,7 +344,7 @@ export default function Words() {
                   name="Search"
                   id="Search"
                   autoComplete="given-name"
-                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm"
+                  className="block w-full h-8 rounded-md border-0 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm"
                 />
               </div>
               <div className='rounded-full w-5 h-5'>
@@ -354,7 +354,7 @@ export default function Words() {
             </div>
           </div>
 
-          <div className='relative flex flex-col justify-start items-start p-5 w-full md:w-auto overflow-auto max-h-[50vh] md:max-h-screen'>
+          <div className='relative flex flex-col justify-start items-start md:px-5 w-full md:w-auto overflow-auto max-h-[50vh] md:max-h-screen'>
             <table className="table-auto">
               <thead>
                 <tr className='border-b-2 border-indigo-800'>

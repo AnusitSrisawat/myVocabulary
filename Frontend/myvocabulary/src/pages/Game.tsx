@@ -28,8 +28,8 @@ export default function Game() {
           <div className='p-10 rounded-3xl flex flex-col justify-center items-center gap-6 w-full'>
             <div className='flex flex-col justify-start items-center gap-4 md:gap-6'>
               <div className='rounded-full w-10 h-10'>
-                {/* <img src="/game.svg" alt="game" className='w-full h-full hover:scale-105 active:scale-90 duration-200 cursor-pointer' /> */}
-                <img src="/gameWhite.svg" alt="game" className='w-full h-full hover:scale-105 active:scale-90 duration-200 cursor-pointer' />
+                {/* <img src="/game.svg" alt="game" className='w-full h-full hover:scale-125 active:scale-90 duration-200 cursor-pointer' /> */}
+                <img src="/gameWhite.svg" alt="game" className='w-full h-full hover:scale-125 active:scale-90 duration-200 cursor-pointer' />
               </div>
               <div className='break-words whitespace-normal text-xl md:text-3xl'>มดตัวน้อยตัวนิด</div>
             </div>

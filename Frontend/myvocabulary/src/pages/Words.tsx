@@ -13,7 +13,8 @@ export default function Words() {
   const [data, setData] = useState([])
   const [wordType, setWordType] = useState(["Noun", "Pronoun", "Verb", "Adjective", "Adverb", "Preposition", "Conjunction", "Interjection"])
 
-  const [selected, setSelected] = useState("")
+  const [selectedWordTypeAdd, setSelectedWordTypeAdd] = useState("")
+  const [selectedWordTypeEdit, setSelectedWordTypeEdit] = useState("")
 
   useEffect(() => {
     fetch('http://localhost:8081/users')
@@ -95,7 +96,7 @@ export default function Words() {
                       </div>
                     </div>
 
-                    <Listbox value={selected} onChange={setSelected}>
+                    <Listbox value={selectedWordTypeAdd} onChange={setSelectedWordTypeAdd}>
                       {({ open }) => (
                         <>
                           <div className="relative flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
@@ -103,10 +104,10 @@ export default function Words() {
                               Word Type
                             </label>
                             <div className="w-full md:w-32">
-                              <Listbox.Button className="relative w-full min-h-8 cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
+                              <Listbox.Button className="relative cursor-pointer w-full min-h-8 rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
                                 <span className="flex items-center">
-                                  {/* <img src={selected.avatar} alt="" className="h-5 w-5 flex-shrink-0 rounded-full" /> */}
-                                  <span className="block">{selected}</span>
+                                  {/* <img src={selectedWordTypeAdd.avatar} alt="" className="h-5 w-5 flex-shrink-0 rounded-full" /> */}
+                                  <span className="block">{selectedWordTypeAdd}</span>
                                 </span>
                                 <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
                                   <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -129,7 +130,7 @@ export default function Words() {
                                     className={({ active }) =>
                                       classNames(
                                         active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                                        'relative cursor-default select-none py-2 pl-3 pr-9'
+                                        'relative cursor-pointer select-none py-2 pl-3 pr-9'
                                       )
                                     }
                                     value={wordType}
@@ -176,7 +177,7 @@ export default function Words() {
                       type="submit"
                       className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 duration-200"
                     >
-                      Save
+                      Add
                     </button>
                   </div>
                 </form>
@@ -240,7 +241,7 @@ export default function Words() {
                       </div>
                     </div>
 
-                    <Listbox value={selected} onChange={setSelected}>
+                    <Listbox value={selectedWordTypeEdit} onChange={setSelectedWordTypeEdit}>
                       {({ open }) => (
                         <>
                           <div className="relative flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
@@ -248,10 +249,10 @@ export default function Words() {
                               Word Type
                             </label>
                             <div className="w-full md:w-32">
-                              <Listbox.Button className="relative w-full min-h-8 cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
+                              <Listbox.Button className="relative cursor-pointer w-full min-h-8 rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
                                 <span className="flex items-center">
-                                  {/* <img src={selected.avatar} alt="" className="h-5 w-5 flex-shrink-0 rounded-full" /> */}
-                                  <span className="block">{selected}</span>
+                                  {/* <img src={selectedWordTypeEdit.avatar} alt="" className="h-5 w-5 flex-shrink-0 rounded-full" /> */}
+                                  <span className="block">{selectedWordTypeEdit}</span>
                                 </span>
                                 <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
                                   <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -274,7 +275,7 @@ export default function Words() {
                                     className={({ active }) =>
                                       classNames(
                                         active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                                        'relative cursor-default select-none py-2 pl-3 pr-9'
+                                        'relative cursor-pointer select-none py-2 pl-3 pr-9'
                                       )
                                     }
                                     value={wordType}
@@ -342,6 +343,7 @@ export default function Words() {
                 <input
                   type="text"
                   name="Search"
+                  placeholder="Search"
                   id="Search"
                   autoComplete="given-name"
                   className="block w-full h-8 rounded-md border-0 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm"

@@ -23,8 +23,8 @@ export default function Game() {
   return (
     <>
       <div className="flex w-screen min-h-screen flex-col items-center justify-center">
-        <div className='relative bg-slate-700 shadow-xl bg-opacity-30 rounded-3xl flex flex-col justify-center items-center'>
-          <div className='p-10 rounded-3xl flex flex-col justify-center items-center gap-6'>
+        <div className='relative bg-slate-700 shadow-xl bg-opacity-30 rounded-3xl flex flex-col justify-center items-center w-full md:w-auto max-w-[80vw]'>
+          <div className='p-10 rounded-3xl flex flex-col justify-center items-center gap-6 w-full'>
             <div className='flex flex-col justify-start items-center gap-4'>
               <div className='rounded-full bg-red-600 w-8 h-8'></div>
               <div className='break-words whitespace-normal'>มดตัวน้อยตัวนิด</div>

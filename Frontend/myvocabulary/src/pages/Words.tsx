@@ -109,8 +109,8 @@ export default function Words() {
             <div className='p-10 rounded-3xl flex flex-col justify-center items-center gap-6'>
               <div className='flex flex-col justify-start items-center gap-2'>
                 <div className='rounded-full w-10 h-10'>
-                  {/* <img src="/words.svg" alt="words" className='w-full h-full hover:scale-105 active:scale-90 cursor-pointer /> */}
-                  <img src="/wordsWhite.svg" alt="words" className='w-full h-full hover:scale-105 active:scale-90 cursor-pointer' />
+                  {/* <img src="/words.svg" alt="words" className='w-full h-full hover:scale-105 active:scale-90 duration-200 cursor-pointer /> */}
+                  <img src="/wordsWhite.svg" alt="words" className='w-full h-full hover:scale-105 active:scale-90 duration-200 cursor-pointer' />
                 </div>
                 <div className='break-words whitespace-normal text-xl'>New Word</div>
               </div>
@@ -424,8 +424,8 @@ export default function Words() {
                 />
               </div>
               <div className='rounded-full w-5 h-5'>
-                {/* <img src="/search.svg" alt="search" className='w-full h-full hover:scale-125 active:scale-100 cursor-pointer' /> */}
-                <img src="/searchWhite.svg" alt="search" className='w-full h-full hover:scale-125 active:scale-100 cursor-pointer' />
+                {/* <img src="/search.svg" alt="search" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' /> */}
+                <img src="/searchWhite.svg" alt="search" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
               </div>
             </div>
           </div>
@@ -454,10 +454,10 @@ export default function Words() {
                       <td className='px-4 py-3 font-normal'>{item.word_type == "" ? "-" : item.word_type}</td>
                       <td className='px-4 py-3 font-normal flex flex-row gap-2 justify-center items-center'>
                         <div>
-                          <img src="" alt="" />1
+                          <img src="/bin.svg" alt="bin" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
                         </div>
                         <div>
-                          <img src="" alt="" />2
+                          <img src="/edit.svg" alt="edit" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
                         </div>
                       </td>
                     </tr>
@@ -472,8 +472,8 @@ export default function Words() {
         <div className='fixed top-0 left-0'>
           <div className='rounded-full w-10 h-10 m-5'>
             <Link href="/">
-              {/* <img src="/back.svg" alt="back" className='w-full h-full hover:scale-125 active:scale-90 cursor-pointer /> */}
-              <img src="/backWhite.svg" alt="back" className='w-full h-full hover:scale-125 active:scale-90 cursor-pointer duration-200' />
+              {/* <img src="/back.svg" alt="back" className='w-full h-full hover:scale-125 active:scale-90 duration-200 cursor-pointer' /> */}
+              <img src="/backWhite.svg" alt="back" className='w-full h-full hover:scale-125 active:scale-90 duration-200 cursor-pointer' />
             </Link>
           </div>
         </div>

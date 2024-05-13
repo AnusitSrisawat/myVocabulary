@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Link from 'next/link';
 import "../app/globals.css";
 
 export default function Words() {
@@ -22,7 +23,7 @@ export default function Words() {
 
   return (
     <>
-      <div className="flex w-screen min-h-screen flex-col items-center justify-center">
+      <div className="relative flex w-screen min-h-screen flex-col items-center justify-center">
         <div className='relative bg-slate-700 shadow-xl bg-opacity-30 rounded-3xl flex flex-col justify-center items-center'>
           <div className='p-10 rounded-3xl flex flex-col justify-center items-center gap-6'>
             <div className='flex flex-col justify-start items-center gap-4'>
@@ -98,6 +99,15 @@ export default function Words() {
               </form>
 
             </div>
+          </div>
+        </div>
+
+        <div className='absolute top-0 left-0'>
+          <div className='rounded-full w-10 h-10 m-10'>
+            <Link href="/">
+              {/* <img src="/back.svg" alt="back" className='w-full h-full hover:scale-125 active:scale-90 cursor-pointer /> */}
+              <img src="/backWhite.svg" alt="back" className='w-full h-full hover:scale-125 active:scale-90 cursor-pointer duration-200' />
+            </Link>
           </div>
         </div>
       </div>

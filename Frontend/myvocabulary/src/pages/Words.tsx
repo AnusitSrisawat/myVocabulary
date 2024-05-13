@@ -442,10 +442,10 @@ export default function Words() {
                 <thead>
                   <tr className='border-b-2 border-indigo-600 text-center'>
                     <th className='p-5 font-semibold border-r-2 border-indigo-600'> </th>
-                    <th className='p-5 font-semibold'>In Thai</th>
-                    <th className='p-5 font-semibold'>In English</th>
-                    <th className='p-5 font-semibold'>In Japanese</th>
-                    <th className='p-5 font-semibold'>Word Type</th>
+                    <th className='p-5 font-semibold'>Thai</th>
+                    <th className='p-5 font-semibold'>English</th>
+                    <th className='p-5 font-semibold'>Japanese</th>
+                    <th className='p-5 font-semibold'>Type</th>
                     <th className='p-5 font-semibold'>Actions</th>
                   </tr>
                 </thead>

@@ -42,6 +42,20 @@ app.post('/api/words/add', async (req, res) => {
     }
 });
 
+app.delete('/api/words/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // Delete the word from the database based on the provided ID
+        await db.query('DELETE FROM words WHERE id = ?', [id]);
+
+        res.status(200).json({ message: 'Word deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting word:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 app.listen(8081, () => {
     console.log("listening...");
 })

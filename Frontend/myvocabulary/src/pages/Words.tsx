@@ -15,7 +15,6 @@ export default function Words() {
   const [data, setData] = useState([])
   const [wordType, setWordType] = useState(["Noun", "Pronoun", "Verb", "Adjective", "Adverb", "Preposition", "Conjunction", "Interjection"])
 
-  const [selectedWordTypeAdd, setSelectedWordTypeAdd] = useState("")
   const [selectedWordTypeEdit, setSelectedWordTypeEdit] = useState("")
 
   useEffect(() => {
@@ -249,7 +248,8 @@ export default function Words() {
                   </div>
 
                   <div className="mt-6 flex items-center justify-center gap-x-6">
-                    <button type="button" className="text-sm font-semibold leading-6 text-gray-200">
+                    <button type="button" className="text-sm font-semibold leading-6 text-gray-200"
+                      onClick={() => (resetFormData())}>
                       Cancel
                     </button>
                     <button

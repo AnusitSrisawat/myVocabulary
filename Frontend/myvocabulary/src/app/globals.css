@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+/* scroll bar */
+/* width */
+::-webkit-scrollbar {
+  @apply w-2 h-2 md:w-2 md:h-2
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  @apply bg-indigo-500 opacity-60 cursor-pointer scroll-smooth
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-indigo-600
+}
+
+:root {
+  @apply scroll-smooth
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

@@ -23,7 +23,7 @@ export default function Setting() {
 
   return (
     <>
-      <div className="relative flex w-screen min-h-screen flex-col items-center justify-center">
+      <div className="relative flex w-screen min-h-screen flex-col items-center justify-center gap-10 p-10">
         <div className='relative bg-slate-700 shadow-xl bg-opacity-30 rounded-3xl flex flex-col justify-center items-center'>
           <div className='p-10 rounded-3xl flex flex-col justify-center items-center gap-6'>
             <div className='flex flex-col justify-start items-center gap-4'>
@@ -31,7 +31,7 @@ export default function Setting() {
                 {/* <img src="/setting.svg" alt="setting" /> */}
                 <img src="/settingWhite.svg" alt="setting" className='w-full h-full hover:scale-105 active:scale-90 cursor-pointer' />
               </div>
-              <div className='break-words whitespace-normal'>New Word</div>
+              <div className='break-words whitespace-normal text-xl'>New Word</div>
             </div>
             <div className='w-full flex flex-col gap-4 justify-center items-center'>
 
@@ -85,7 +85,7 @@ export default function Setting() {
 
                 </div>
 
-                <div className="mt-6 flex items-center justify-end gap-x-6">
+                <div className="mt-6 flex items-center justify-center gap-x-6">
                   <button type="button" className="text-sm font-semibold leading-6 text-gray-200">
                     Cancel
                   </button>
@@ -102,8 +102,8 @@ export default function Setting() {
           </div>
         </div>
 
-        <div className='absolute top-0 left-0'>
-          <div className='rounded-full w-10 h-10 m-10'>
+        <div className='fixed top-0 left-0'>
+          <div className='rounded-full w-10 h-10 m-5'>
             <Link href="/">
               {/* <img src="/back.svg" alt="back" className='w-full h-full hover:scale-125 active:scale-90 cursor-pointer /> */}
               <img src="/backWhite.svg" alt="back" className='w-full h-full hover:scale-125 active:scale-90 cursor-pointer duration-200' />

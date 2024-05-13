@@ -16,7 +16,7 @@ export default function Home() {
               {/* <img src="/game.svg" alt="game" className='w-full h-full hover:scale-105 active:scale-90 cursor-pointer duration-200 /> */}
               <img src="/gameWhite.svg" alt="game" className='w-full h-full hover:scale-105 active:scale-90 cursor-pointer duration-200' />
             </div>
-            <div className='break-words whitespace-normal'>Game</div>
+            <div className='break-words whitespace-normal text-xl'>Game</div>
           </div>
         </Link>
 

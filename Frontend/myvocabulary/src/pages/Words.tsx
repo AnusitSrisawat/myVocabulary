@@ -65,7 +65,7 @@ export default function Words() {
 
       // Send the form data to your backend API endpoint
       await axios.post('http://localhost:8081/api/words/add', formDataAdd);
-      alert('Word added successfully');
+      // alert('Word added successfully');
       // Optionally, you can reset the form fields after successful submission
       setFormDataAdd({
         inThai: '',
@@ -75,7 +75,7 @@ export default function Words() {
       });
     } catch (error) {
       console.error('Error adding word:', error);
-      alert('Failed to add word. Please try again later.');
+      // alert('Failed to add word. Please try again later.');
     }
   };
   const handleSubmitEdit = async (e: any) => {
@@ -130,7 +130,7 @@ export default function Words() {
                           id="In-Thai"
                           autoComplete="given-name"
                           className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm"
-                          value={formDataAdd.inThai}
+
                           onChange={handleChangeAdd}
                         />
                       </div>
@@ -147,7 +147,7 @@ export default function Words() {
                           id="In-English"
                           autoComplete="given-name"
                           className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm"
-                          value={formDataAdd.inEnglish}
+
                           onChange={handleChangeAdd}
                         />
                       </div>
@@ -164,13 +164,13 @@ export default function Words() {
                           id="In-Japanese"
                           autoComplete="given-name"
                           className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm"
-                          value={formDataAdd.inJapanese}
+
                           onChange={handleChangeAdd}
                         />
                       </div>
                     </div>
 
-                    <Listbox value={formDataAdd.inJapanese} onChange={handleChangeAdd}>
+                    <Listbox onChange={handleChangeAdd}>
                       {({ open }) => (
                         <>
                           <div className="relative flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 md:gap-4 w-full">
@@ -407,7 +407,7 @@ export default function Words() {
 
         </div>
 
-        <div className='relative bg-slate-600 shadow-xl bg-opacity-40 rounded-3xl flex flex-col justify-start items-center md:items-start gap-4 p-5 w-fit overflow-auto md:h-[90vh]'>
+        <div className='relative bg-slate-600 shadow-xl bg-opacity-40 rounded-3xl flex flex-col justify-start items-center md:items-start gap-4 p-5 w-full md:w-fit md:h-[90vh]'>
           <div className='flex flex-col md:flex-row w-fit md:w-full justify-between items-center gap-y-4'>
             <div className='flex flex-row justify-center md:justify-start items-center gap-4 w-fit text-2xl font-bold px-4'>
               Words Database
@@ -430,29 +430,42 @@ export default function Words() {
             </div>
           </div>
 
-          <div className='relative flex flex-col justify-start items-start md:px-5 w-fit overflow-auto max-h-[50vh] md:max-h-screen'>
-            <table className="table-auto text-base">
-              <thead>
-                <tr className='border-b-2 border-indigo-800 text-center'>
-                  <th className='px-4 py-3 font-semibold'>In Thai</th>
-                  <th className='px-4 py-3 font-semibold'>In English</th>
-                  <th className='px-4 py-3 font-semibold'>In Japanese</th>
-                  <th className='px-4 py-3 font-semibold'>Word Type</th>
-                </tr>
-              </thead>
-              <tbody>
-
-                {data.map((item: any) => (
-                  <tr key={item.id} className='border-b-2 border-indigo-950 text-center'>
-                    <td className='px-4 py-3 font-normal'>{item.in_thai == "" ? "-" : item.in_thai}</td>
-                    <td className='px-4 py-3 font-normal'>{item.in_english == "" ? "-" : item.in_english}</td>
-                    <td className='px-4 py-3 font-normal'>{item.in_japanese == "" ? "-" : item.in_japanese}</td>
-                    <td className='px-4 py-3 font-normal'>{item.word_type == "" ? "-" : item.word_type}</td>
+          <div className='w-full overflow-auto'>
+            <div className='relative flex flex-col justify-start items-start md:px-5 w-fit max-h-[50vh] md:max-h-[80vh]'>
+              <table className="table-auto text-base">
+                <thead>
+                  <tr className='border-b-2 border-indigo-800 text-center'>
+                    <th className='px-4 py-3 font-semibold'>id</th>
+                    <th className='px-4 py-3 font-semibold'>In Thai</th>
+                    <th className='px-4 py-3 font-semibold'>In English</th>
+                    <th className='px-4 py-3 font-semibold'>In Japanese</th>
+                    <th className='px-4 py-3 font-semibold'>Word Type</th>
+                    <th className='px-4 py-3 font-semibold'>actions</th>
                   </tr>
-                ))}
+                </thead>
+                <tbody>
 
-              </tbody>
-            </table>
+                  {data.map((item: any) => (
+                    <tr key={item.id} className='border-b-2 border-indigo-950 text-center'>
+                      <td className='px-4 py-3 font-normal'>{item.id == "" ? "-" : item.id}</td>
+                      <td className='px-4 py-3 font-normal'>{item.in_thai == "" ? "-" : item.in_thai}</td>
+                      <td className='px-4 py-3 font-normal'>{item.in_english == "" ? "-" : item.in_english}</td>
+                      <td className='px-4 py-3 font-normal'>{item.in_japanese == "" ? "-" : item.in_japanese}</td>
+                      <td className='px-4 py-3 font-normal'>{item.word_type == "" ? "-" : item.word_type}</td>
+                      <td className='px-4 py-3 font-normal flex flex-row gap-2 justify-center items-center'>
+                        <div>
+                          <img src="" alt="" />1
+                        </div>
+                        <div>
+                          <img src="" alt="" />2
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 

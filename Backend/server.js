@@ -29,7 +29,6 @@ app.get('/api/words', (re, res) => {
 
 app.post('/api/words/add', async (req, res) => {
     try {
-        console.log("req.body", req.body);
         const { inThai, inEnglish, inJapanese, wordType } = req.body;
 
         // Insert the data into the database

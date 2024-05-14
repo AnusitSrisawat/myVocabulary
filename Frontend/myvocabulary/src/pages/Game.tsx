@@ -61,6 +61,8 @@ export default function Game() {
 
   const ansNext = () => {
     setAns(true);
+    console.log(ans);
+    
     setTimeout(() => {
       setAns(false);
       setCountMax((prevCount) => (prevCount + 1));
@@ -73,7 +75,6 @@ export default function Game() {
     if (count <= countMax) {
       setAns(false);
     }
-    // setCountMax((prevCount) => (prevCount + 1));
     setCount((prevCount) => (prevCount + 1) % data.length); // Loop count within data length
   };
 
@@ -122,8 +123,8 @@ export default function Game() {
             <div className='w-full grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 justify-center items-center text-base md:text-xl'>
               {choices[count]?.map((choiceItem, choiceIndex) => (
                 <div key={choiceIndex} className={`w-full bg-slate-600 bg-opacity-10 text-left px-4 py-3 md:px-5 md:py-4 rounded-xl cursor-pointer border-2 border-slate-600 hover:border-slate-500 hover:bg-slate-500 hover:shadow-lg hover:scale-105 active:scale-90 duration-200
-                ${currentWord?.id == choiceItem?.id && ans ? 'bg-green-500 bg-opacity-100 border-2 border-green-600 hover:border-green-500 hover:bg-green-500' : ''} 
-                ${currentWord?.id != choiceItem?.id && ans && clickAns == choiceItem?.id ? 'bg-red-500 bg-opacity-100 border-2 border-red-600 hover:border-red-500 hover:bg-red-500' : ''}`}
+                ${currentWord?.id == choiceItem?.id && ans ? '!bg-green-500 bg-opacity-100 border-2 !border-green-600 !hover:border-green-500 !hover:bg-green-500' : ''} 
+                ${currentWord?.id != choiceItem?.id && ans && clickAns == choiceItem?.id ? '!bg-red-500 bg-opacity-100 border-2 !border-red-600 !hover:border-red-500 !hover:bg-red-500' : ''}`}
                   onClick={() => { ansNext(); setClickAns(choiceItem?.id) }}>
                   {String.fromCharCode(65 + choiceIndex)}. <span>{choiceItem?.in_thai}</span>
                 </div>

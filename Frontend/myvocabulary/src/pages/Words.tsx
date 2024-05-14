@@ -44,6 +44,8 @@ export default function Words() {
         throw new Error('Network response was not ok');
       }
       const responseData = await response.json();
+      console.log("responseData", responseData);
+
       setSearchResults(responseData);
       setData(responseData);
     } catch (error) {
@@ -54,11 +56,7 @@ export default function Words() {
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const term = event.target.value;
     setSearchTerm(term);
-    if (term) {
-      fetchSearchResults(term);
-    } else {
-      setSearchResults([]);
-    }
+    fetchSearchResults(term);
   };
 
   const [formData, setFormData] = useState({
@@ -452,7 +450,7 @@ export default function Words() {
                   onChange={handleSearch}
                 />
               </div>
-              <div className='rounded-full w-5 h-5'>
+              <div className='rounded-full w-5 h-5' onClick={() => (handleSearch)}>
                 {/* <img src="/search.svg" alt="search" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' /> */}
                 <img src="/searchWhite.svg" alt="search" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
               </div>
@@ -473,23 +471,37 @@ export default function Words() {
               </thead>
               <tbody>
 
-                {data.map((item: any, index: number) => (
-                  <tr key={item.id} className={`border-b-2 text-center ${index === data.length - 1 ? 'border-transparent' : 'border-indigo-800'}`}>
-                    <td className='p-5 font-normal border-r-2 border-indigo-600'>{index + 1}</td>
-                    <td className='p-5 font-normal'>{item.in_thai == "" ? "-" : item.in_thai}</td>
-                    <td className='p-5 font-normal'>{item.in_english == "" ? "-" : item.in_english}</td>
-                    {/* <td className='p-5 font-normal'>{item.in_japanese == "" ? "-" : item.in_japanese}</td>
-                    <td className='p-5 font-normal'>{item.word_type == "" ? "-" : item.word_type}</td> */}
-                    <td className='p-5 font-normal flex flex-row gap-4 justify-center items-center'>
-                      <div className='rounded-full w-6 h-6' onClick={() => deleteWord(item.id)}>
-                        <img src="/bin.svg" alt="bin" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
-                      </div>
-                      {/* <div className='rounded-full w-6 h-6'>
-                        <img src="/edit.svg" alt="edit" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
-                      </div> */}
-                    </td>
-                  </tr>
-                ))}
+                {data.length > 0 ? (
+                  <>
+                    {
+                      data.map((item: any, index: number) => (
+                        <tr key={item.id} className={`border-b-2 text-center ${index === data.length - 1 ? 'border-transparent' : 'border-indigo-800'}`}>
+                          <td className='p-5 font-normal border-r-2 border-indigo-600'>{index + 1}</td>
+                          <td className='p-5 font-normal'>{item.in_thai == "" ? "-" : item.in_thai}</td>
+                          <td className='p-5 font-normal'>{item.in_english == "" ? "-" : item.in_english}</td>
+                          {/* <td className='p-5 font-normal'>{item.in_japanese == "" ? "-" : item.in_japanese}</td>
+                      <td className='p-5 font-normal'>{item.word_type == "" ? "-" : item.word_type}</td> */}
+                          <td className='p-5 font-normal flex flex-row gap-4 justify-center items-center'>
+                            <div className='rounded-full w-6 h-6' onClick={() => deleteWord(item.id)}>
+                              <img src="/bin.svg" alt="bin" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
+                            </div>
+                            {/* <div className='rounded-full w-6 h-6'>
+                          <img src="/edit.svg" alt="edit" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
+                        </div> */}1111
+                          </td>
+                        </tr>
+                      ))
+                    }
+                  </>
+                ) : (
+                  <>
+                    <tr className={`border-b-2 text-center border-transparent`}>
+                      <td className='p-5 font-normal border-r-2 border-indigo-600'> </td>
+                      <td className='p-5 font-normal'>no data</td>
+                    </tr>
+                  </>
+                )}
+
 
               </tbody>
             </table>

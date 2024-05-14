@@ -18,8 +18,6 @@ export default function Words() {
   const [selectedWordTypeEdit, setSelectedWordTypeEdit] = useState("")
 
   useEffect(() => {
-
-
     fetchData();
   }, []);
 
@@ -436,42 +434,40 @@ export default function Words() {
             </div>
           </div>
 
-          <div className='w-full overflow-auto'>
-            <div className='relative flex flex-col justify-start items-start md:px-5 md:py-3 w-fit max-h-[50vh] md:max-h-[80vh] rounded-3xl bg-slate-600 shadow-xl bg-opacity-30'>
-              <table className="table-auto text-base rounded-3xl">
-                <thead>
-                  <tr className='border-b-2 border-indigo-600 text-center'>
-                    <th className='p-5 font-semibold border-r-2 border-indigo-600'> </th>
-                    <th className='p-5 font-semibold'>Thai</th>
-                    <th className='p-5 font-semibold'>English</th>
-                    <th className='p-5 font-semibold'>Japanese</th>
-                    <th className='p-5 font-semibold'>Type</th>
-                    <th className='p-5 font-semibold'>Actions</th>
+          <div className='relative flex flex-col justify-start items-start md:px-5 md:py-3 w-full max-h-[50vh] md:max-h-[80vh] overflow-auto rounded-3xl bg-slate-600 shadow-xl bg-opacity-30'>
+            <table className="table-auto text-base rounded-3xl">
+              <thead>
+                <tr className='border-b-2 border-indigo-600 text-center'>
+                  <th className='p-5 font-semibold border-r-2 border-indigo-600'> </th>
+                  <th className='p-5 font-semibold'>Thai</th>
+                  <th className='p-5 font-semibold'>English</th>
+                  <th className='p-5 font-semibold'>Japanese</th>
+                  <th className='p-5 font-semibold'>Type</th>
+                  <th className='p-5 font-semibold'>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                {data.map((item: any, index: number) => (
+                  <tr key={item.id} className={`border-b-2 text-center ${index === data.length - 1 ? 'border-transparent' : 'border-indigo-800'}`}>
+                    <td className='p-5 font-normal border-r-2 border-indigo-600'>{index + 1}</td>
+                    <td className='p-5 font-normal'>{item.in_thai == "" ? "-" : item.in_thai}</td>
+                    <td className='p-5 font-normal'>{item.in_english == "" ? "-" : item.in_english}</td>
+                    <td className='p-5 font-normal'>{item.in_japanese == "" ? "-" : item.in_japanese}</td>
+                    <td className='p-5 font-normal'>{item.word_type == "" ? "-" : item.word_type}</td>
+                    <td className='p-5 font-normal flex flex-row gap-4 justify-center items-center'>
+                      <div className='rounded-full w-6 h-6' onClick={() => deleteWord(item.id)}>
+                        <img src="/bin.svg" alt="bin" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
+                      </div>
+                      <div className='rounded-full w-6 h-6'>
+                        <img src="/edit.svg" alt="edit" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
+                      </div>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
+                ))}
 
-                  {data.map((item: any, index: number) => (
-                    <tr key={item.id} className={`border-b-2 text-center ${index === data.length - 1 ? 'border-transparent' : 'border-indigo-800'}`}>
-                      <td className='p-5 font-normal border-r-2 border-indigo-600'>{index + 1}</td>
-                      <td className='p-5 font-normal'>{item.in_thai == "" ? "-" : item.in_thai}</td>
-                      <td className='p-5 font-normal'>{item.in_english == "" ? "-" : item.in_english}</td>
-                      <td className='p-5 font-normal'>{item.in_japanese == "" ? "-" : item.in_japanese}</td>
-                      <td className='p-5 font-normal'>{item.word_type == "" ? "-" : item.word_type}</td>
-                      <td className='p-5 font-normal flex flex-row gap-4 justify-center items-center'>
-                        <div className='rounded-full w-6 h-6' onClick={() => deleteWord(item.id)}>
-                          <img src="/bin.svg" alt="bin" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
-                        </div>
-                        <div className='rounded-full w-6 h-6'>
-                          <img src="/edit.svg" alt="edit" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-
-                </tbody>
-              </table>
-            </div>
+              </tbody>
+            </table>
           </div>
         </div>
 

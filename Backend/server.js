@@ -65,6 +65,20 @@ app.post('/api/words/add', async (req, res) => {
     }
 });
 
+// Update word
+app.put('/api/words/:id', (req, res) => {
+    const { id } = req.params;
+    const { in_thai, in_english, in_japanese, word_type } = req.body;
+    
+    const sql = "UPDATE words SET in_thai = ?, in_english = ?, in_japanese = ?, word_type = ? WHERE id = ?";
+    const values = [in_thai, in_english, in_japanese, word_type, id];
+    
+    db.query(sql, values, (err, result) => {
+      if (err) return res.json(err);
+      return res.json({ message: 'Word updated successfully', result });
+    });
+  });
+
 //Delete word
 app.delete('/api/words/:id', async (req, res) => {
     try {

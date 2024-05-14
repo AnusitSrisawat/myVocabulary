@@ -12,7 +12,10 @@ function classNames(...classes: string[]) {
 
 export default function Words() {
   const [count, setCount] = useState(0)
+  const [editId, setEditId] = useState('')
+  const [addStatus, setAddStatus] = useState(true)
   const [data, setData] = useState([])
+  const [dataId, setDataId] = useState([])
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState(''); // State for search term
 
@@ -122,6 +125,60 @@ export default function Words() {
     }
   };
 
+  const fetchDataById = async (id: string) => {
+    try {
+      const response = await fetch(`http://localhost:8081/api/words/${id}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const responseData = await response.json();
+      console.log("responseData", responseData);
+      console.log("FormData", formData);
+
+      setFormData({
+        inThai: responseData?.in_thai,
+        inEnglish: responseData?.in_english,
+        inJapanese: responseData?.in_japanese,
+        wordType: responseData?.word_type
+      });
+      setAddStatus(false)
+      setEditId(id);
+      setDataId(responseData); // Assuming you want to set this as a single item in the data array
+    } catch (error) {
+      console.error('Error fetching data by ID:', error);
+    }
+  };
+
+  const editWord = async () => {
+    try {
+      const response = await fetch(`http://localhost:8081/api/words/${editId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          in_thai: formData?.inThai,
+          in_english: formData?.inEnglish,
+          in_japanese: formData?.inJapanese,
+          word_type: formData?.wordType
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const responseData = await response.json();
+      console.log('Update successful:', responseData);
+      // Optionally refetch data or update state to reflect changes
+      // fetchData();
+
+    } catch (error) {
+      console.error('Error updating word:', error);
+    }
+  };
+
+
 
   return (
     <>
@@ -140,7 +197,7 @@ export default function Words() {
               </div>
               <div className='w-full flex flex-col gap-4 justify-center items-center'>
 
-                <form onSubmit={handleSubmitAdd}>
+                <form onSubmit={addStatus ? handleSubmitAdd : editWord}>
                   <div className='w-full flex flex-col justify-center items-center gap-4 min-w-52'>
 
                     <div className="flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2 lg:gap-4 w-full">
@@ -270,14 +327,14 @@ export default function Words() {
 
                   <div className="mt-6 flex items-center justify-center gap-x-6">
                     <button type="button" className="text-sm font-semibold leading-6 text-gray-200"
-                      onClick={() => (resetFormData())}>
+                      onClick={() => { resetFormData(); setAddStatus(true); }}>
                       Cancel
                     </button>
                     <button
                       type="submit"
                       className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 duration-200"
                     >
-                      Add
+                      {addStatus ? 'Add' : 'Edit'}
                     </button>
                   </div>
                 </form>
@@ -285,7 +342,7 @@ export default function Words() {
               </div>
             </div>
           </div>
-        </div>
+        </div >
 
         <div className='relative bg-slate-700 shadow-xl bg-opacity-40 rounded-3xl flex flex-col justify-start items-center md:items-start gap-4 p-5 w-full md:w-fit md:h-fit lg:max-h-[90vh]'>
           <div className='flex flex-col w-fit md:w-full justify-between items-center gap-y-4'>
@@ -340,9 +397,9 @@ export default function Words() {
                             <div className='rounded-full w-6 h-6' onClick={() => deleteWord(item.id)}>
                               <img src="/bin.svg" alt="bin" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
                             </div>
-                            {/* <div className='rounded-full w-6 h-6'>
-                          <img src="/edit.svg" alt="edit" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
-                        </div> */}
+                            <div className='rounded-full w-6 h-6' onClick={() => fetchDataById(item.id)}>
+                              <img src="/edit.svg" alt="edit" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
+                            </div>
                           </td>
                         </tr>
                       ))
@@ -371,7 +428,7 @@ export default function Words() {
             </Link>
           </div>
         </div>
-      </div>
+      </div >
     </>
   )
 }

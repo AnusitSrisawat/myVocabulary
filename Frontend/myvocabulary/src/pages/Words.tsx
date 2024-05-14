@@ -460,8 +460,8 @@ export default function Words() {
           <div className='relative flex flex-col justify-start items-start md:px-5 md:py-3 w-full max-h-[50vh] md:max-h-[80vh] overflow-auto rounded-3xl bg-slate-600 shadow-xl bg-opacity-30'>
             <table className="table-auto text-base rounded-3xl">
               <thead>
-                <tr className='border-b-2 border-indigo-600 text-center'>
-                  <th className='p-5 font-semibold border-r-2 border-indigo-600'> </th>
+                <tr className='border-b-2 border-slate-500 text-center'>
+                  <th className='p-5 font-semibold border-r-2 border-slate-500'> </th>
                   <th className='p-5 font-semibold'>Thai</th>
                   <th className='p-5 font-semibold'>English</th>
                   {/* <th className='p-5 font-semibold'>Japanese</th>
@@ -475,8 +475,8 @@ export default function Words() {
                   <>
                     {
                       data.map((item: any, index: number) => (
-                        <tr key={item.id} className={`border-b-2 text-center ${index === data.length - 1 ? 'border-transparent' : 'border-indigo-800'}`}>
-                          <td className='p-5 font-normal border-r-2 border-indigo-600'>{index + 1}</td>
+                        <tr key={item.id} className={`border-b-2 text-center ${index === data.length - 1 ? 'border-transparent' : 'border-slate-700'}`}>
+                          <td className='p-5 font-normal border-r-2 border-slate-500'>{index + 1}</td>
                           <td className='p-5 font-normal'>{item.in_thai == "" ? "-" : item.in_thai}</td>
                           <td className='p-5 font-normal'>{item.in_english == "" ? "-" : item.in_english}</td>
                           {/* <td className='p-5 font-normal'>{item.in_japanese == "" ? "-" : item.in_japanese}</td>
@@ -487,7 +487,7 @@ export default function Words() {
                             </div>
                             {/* <div className='rounded-full w-6 h-6'>
                           <img src="/edit.svg" alt="edit" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
-                        </div> */}1111
+                        </div> */}
                           </td>
                         </tr>
                       ))
@@ -496,7 +496,7 @@ export default function Words() {
                 ) : (
                   <>
                     <tr className={`border-b-2 text-center border-transparent`}>
-                      <td className='p-5 font-normal border-r-2 border-indigo-600'> </td>
+                      <td className='p-5 font-normal border-r-2 border-slate-500'> </td>
                       <td className='p-5 font-normal'>no data</td>
                     </tr>
                   </>

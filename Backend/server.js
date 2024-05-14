@@ -19,6 +19,7 @@ app.get('/', (re, res) => {
     return res.json("from backend side")
 })
 
+// Get all word
 app.get('/api/words', (re, res) => {
     const sql = "SELECT * FROM words where 1";
     db.query(sql, (err, data) => {
@@ -27,6 +28,29 @@ app.get('/api/words', (re, res) => {
     })
 })
 
+// Get a word by ID
+app.get('/api/words/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "SELECT * FROM words WHERE id = ?";
+    db.query(sql, [id], (err, data) => {
+        if (err) return res.json(err);
+        if (data.length === 0) return res.status(404).json({ message: 'Word not found' });
+        return res.json(data[0]);
+    });
+});
+
+// Search words
+app.get('/api/search', (req, res) => {
+    const searchTerm = req.query.term;
+    const sql = "SELECT * FROM words WHERE in_thai LIKE ? OR in_english LIKE ? OR in_japanese LIKE ?";
+    const searchPattern = `%${searchTerm}%`;
+    db.query(sql, [searchPattern, searchPattern, searchPattern], (err, data) => {
+        if (err) return res.json(err);
+        return res.json(data);
+    });
+});
+
+// Add word
 app.post('/api/words/add', async (req, res) => {
     try {
         const { inThai, inEnglish, inJapanese, wordType } = req.body;
@@ -41,6 +65,7 @@ app.post('/api/words/add', async (req, res) => {
     }
 });
 
+//Delete word
 app.delete('/api/words/:id', async (req, res) => {
     try {
         const { id } = req.params;

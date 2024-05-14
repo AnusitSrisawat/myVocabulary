@@ -13,6 +13,9 @@ function classNames(...classes: string[]) {
 export default function Words() {
   const [count, setCount] = useState(0)
   const [data, setData] = useState([])
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(''); // State for search term
+
   const [wordType, setWordType] = useState(["Noun", "Pronoun", "Verb", "Adjective", "Adverb", "Preposition", "Conjunction", "Interjection"])
 
   const [selectedWordTypeEdit, setSelectedWordTypeEdit] = useState("")
@@ -31,6 +34,30 @@ export default function Words() {
       setData(responseData);
     } catch (error) {
       console.error('Error fetching data:', error);
+    }
+  };
+
+  const fetchSearchResults = async (term: string) => {
+    try {
+      const response = await fetch(`http://localhost:8081/api/search?term=${term}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const responseData = await response.json();
+      setSearchResults(responseData);
+      setData(responseData);
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+    }
+  };
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const term = event.target.value;
+    setSearchTerm(term);
+    if (term) {
+      fetchSearchResults(term);
+    } else {
+      setSearchResults([]);
     }
   };
 
@@ -421,6 +448,8 @@ export default function Words() {
                   id="Search"
                   autoComplete="given-name"
                   className="block w-full h-fit md:max-8 rounded-md border-0 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm"
+                  value={searchTerm}
+                  onChange={handleSearch}
                 />
               </div>
               <div className='rounded-full w-5 h-5'>

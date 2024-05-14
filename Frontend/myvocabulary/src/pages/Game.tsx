@@ -178,16 +178,14 @@ export default function Game() {
               <img src="/chevronLeftWhite.svg" alt="chevronLeft" className='w-5 h-5 hover:scale-125 active:scale-90 cursor-pointer duration-200' />
             </div>
 
-            <div className='flex flex-row justify-start items-center gap-2 lg:gap-4 bg-slate-600 bg-opacity-30 px-4 py-2 rounded-2xl w-full'>
-              {/* <img src="/correct.svg" alt="correct" className='w-6 h-6 hover:scale-125 active:scale-90 cursor-pointer duration-200' /> */}
+            {/* <div className='flex flex-row justify-start items-center gap-2 lg:gap-4 bg-slate-600 bg-opacity-30 px-4 py-2 rounded-2xl w-full'>
               <img src="/correctWhite.svg" alt="correct" className='w-6 h-6 hover:scale-125 active:scale-90 cursor-pointer duration-200' />
               <div className='whitespace-nowrap'>Total Correct : {totalCorrectPoint}</div>
             </div>
             <div className='flex flex-row justify-start items-center gap-2 lg:gap-4 bg-slate-600 bg-opacity-30 px-4 py-2 rounded-2xl w-full'>
-              {/* <img src="/wrong.svg" alt="wrong" className='w-6 h-6 hover:scale-125 active:scale-90 cursor-pointer duration-200' /> */}
               <img src="/wrongWhite.svg" alt="wrong" className='w-6 h-6 hover:scale-125 active:scale-90 cursor-pointer duration-200' />
               <div className='whitespace-nowrap'>Total Wrong : {totalWrongPoint}</div>
-            </div>
+            </div> */}
             <div className='flex flex-row justify-start items-center gap-2 lg:gap-4 bg-slate-600 bg-opacity-30 px-4 py-2 rounded-2xl w-full'>
               {/* <img src="/correct.svg" alt="correct" className='w-6 h-6 hover:scale-125 active:scale-90 cursor-pointer duration-200' /> */}
               <img src="/correctWhite.svg" alt="correct" className='w-6 h-6 hover:scale-125 active:scale-90 cursor-pointer duration-200' />

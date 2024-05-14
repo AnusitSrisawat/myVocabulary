@@ -152,7 +152,7 @@ export default function Words() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2 lg:gap-4 w-full">
+                    {/* <div className="flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2 lg:gap-4 w-full">
                       <label htmlFor="inJapanese" className="block text-sm text-gray-200 whitespace-nowrap">
                         In Japanese
                       </label>
@@ -167,9 +167,9 @@ export default function Words() {
                           onChange={handleChangeAdd}
                         />
                       </div>
-                    </div>
+                    </div> */}
 
-                    <Listbox
+                    {/* <Listbox
                       name="wordType"
                       value={formData.wordType}
                       onChange={handleChangeAddSelect}>
@@ -182,7 +182,6 @@ export default function Words() {
                             <div className="w-full lg:w-32">
                               <Listbox.Button className="relative cursor-pointer w-full min-h-8 rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
                                 <span className="flex items-center">
-                                  {/* <img src={selectedWordTypeAdd.avatar} alt="" className="h-5 w-5 flex-shrink-0 rounded-full" /> */}
                                   <span className="block">{formData.wordType}</span>
                                 </span>
                                 <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
@@ -214,7 +213,6 @@ export default function Words() {
                                     {({ selected, active }) => (
                                       <>
                                         <div className="flex items-center">
-                                          {/* <img src={wordType} alt="" className="h-5 w-5 flex-shrink-0 rounded-full" /> */}
                                           <span
                                             className={classNames(selected ? 'font-semibold' : 'font-normal', 'block')}
                                           >
@@ -241,7 +239,7 @@ export default function Words() {
                           </div>
                         </>
                       )}
-                    </Listbox>
+                    </Listbox> */}
 
                   </div>
 
@@ -303,7 +301,7 @@ export default function Words() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2 md:gap-4 w-full">
+                    {/* <div className="flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2 md:gap-4 w-full">
                       <label htmlFor="In-Japanese" className="block text-sm text-gray-200 whitespace-nowrap">
                         In Japanese
                       </label>
@@ -316,9 +314,9 @@ export default function Words() {
                           className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm"
                         />
                       </div>
-                    </div>
+                    </div> */}
 
-                    <Listbox value={selectedWordTypeEdit} onChange={setSelectedWordTypeEdit}>
+                    {/* <Listbox value={selectedWordTypeEdit} onChange={setSelectedWordTypeEdit}>
                       {({ open }) => (
                         <>
                           <div className="relative flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2 md:gap-4 w-full">
@@ -328,7 +326,6 @@ export default function Words() {
                             <div className="w-full lg:w-32">
                               <Listbox.Button className="relative cursor-pointer w-full min-h-8 rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
                                 <span className="flex items-center">
-                                  {/* <img src={selectedWordTypeEdit.avatar} alt="" className="h-5 w-5 flex-shrink-0 rounded-full" /> */}
                                   <span className="block">{selectedWordTypeEdit}</span>
                                 </span>
                                 <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
@@ -360,7 +357,6 @@ export default function Words() {
                                     {({ selected, active }) => (
                                       <>
                                         <div className="flex items-center">
-                                          {/* <img src={wordType} alt="" className="h-5 w-5 flex-shrink-0 rounded-full" /> */}
                                           <span
                                             className={classNames(selected ? 'font-semibold' : 'font-normal', 'block')}
                                           >
@@ -387,7 +383,7 @@ export default function Words() {
                           </div>
                         </>
                       )}
-                    </Listbox>
+                    </Listbox> */}
 
                   </div>
 
@@ -412,7 +408,7 @@ export default function Words() {
         </div>
 
         <div className='relative bg-slate-700 shadow-xl bg-opacity-40 rounded-3xl flex flex-col justify-start items-center md:items-start gap-4 p-5 w-full md:w-fit md:h-fit lg:max-h-[90vh]'>
-          <div className='flex flex-col md:flex-row w-fit md:w-full justify-between items-center gap-y-4'>
+          <div className='flex flex-col w-fit md:w-full justify-between items-center gap-y-4'>
             <div className='flex flex-row justify-center md:justify-start items-center gap-4 w-fit text-2xl font-bold px-4'>
               Words Database
             </div>
@@ -441,8 +437,8 @@ export default function Words() {
                   <th className='p-5 font-semibold border-r-2 border-indigo-600'> </th>
                   <th className='p-5 font-semibold'>Thai</th>
                   <th className='p-5 font-semibold'>English</th>
-                  <th className='p-5 font-semibold'>Japanese</th>
-                  <th className='p-5 font-semibold'>Type</th>
+                  {/* <th className='p-5 font-semibold'>Japanese</th>
+                  <th className='p-5 font-semibold'>Type</th> */}
                   <th className='p-5 font-semibold'>Actions</th>
                 </tr>
               </thead>
@@ -453,15 +449,15 @@ export default function Words() {
                     <td className='p-5 font-normal border-r-2 border-indigo-600'>{index + 1}</td>
                     <td className='p-5 font-normal'>{item.in_thai == "" ? "-" : item.in_thai}</td>
                     <td className='p-5 font-normal'>{item.in_english == "" ? "-" : item.in_english}</td>
-                    <td className='p-5 font-normal'>{item.in_japanese == "" ? "-" : item.in_japanese}</td>
-                    <td className='p-5 font-normal'>{item.word_type == "" ? "-" : item.word_type}</td>
+                    {/* <td className='p-5 font-normal'>{item.in_japanese == "" ? "-" : item.in_japanese}</td>
+                    <td className='p-5 font-normal'>{item.word_type == "" ? "-" : item.word_type}</td> */}
                     <td className='p-5 font-normal flex flex-row gap-4 justify-center items-center'>
                       <div className='rounded-full w-6 h-6' onClick={() => deleteWord(item.id)}>
                         <img src="/bin.svg" alt="bin" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
                       </div>
-                      <div className='rounded-full w-6 h-6'>
+                      {/* <div className='rounded-full w-6 h-6'>
                         <img src="/edit.svg" alt="edit" className='w-full h-full hover:scale-125 active:scale-100 duration-200 cursor-pointer' />
-                      </div>
+                      </div> */}
                     </td>
                   </tr>
                 ))}

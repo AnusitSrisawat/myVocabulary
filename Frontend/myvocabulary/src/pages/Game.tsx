@@ -121,7 +121,7 @@ export default function Game() {
           </div>
         </div>
         <div className='relative bg-slate-700 shadow-xl bg-opacity-30 rounded-3xl flex flex-col justify-center items-center w-full md:w-auto min-w-[50vw] md:min-w-[30vw] max-w-[80vw]'>
-          <div className='relative p-10 rounded-3xl flex flex-col justify-center items-center gap-6 w-full'>
+          <div className='relative p-10 rounded-3xl flex flex-col justify-center items-center gap-10 w-full'>
 
             {count > 0 && false && (
               <div className='absolute top-0 left-0'>
@@ -149,7 +149,7 @@ export default function Game() {
               <div className='rounded-full w-10 h-10'>
                 <img src="/gameWhite.svg" alt="game" className='w-full h-full hover:scale-125 active:scale-90 duration-200 cursor-pointer' />
               </div>
-              <div className='break-words whitespace-normal text-xl md:text-3xl'>
+              <div className='break-words whitespace-normal text-xl md:text-4xl'>
                 {lang === 'tha' && <span> {currentWord?.in_thai}</span>}
                 {lang === 'eng' && <span> {currentWord?.in_english}</span>}
                 {lang === 'jpn' && <span> {currentWord?.in_japanese}</span>}

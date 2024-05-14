@@ -5,8 +5,10 @@ import "./globals.css";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-10">
-      <div className="flex justify-center items-center text-3xl font-bold">
-        My Vocabulary
+      <div className="flex flex-col justify-center items-center text-3xl font-bold bg-slate-700 shadow-xl bg-opacity-30 rounded-3xl p-10">
+        {/* My Vocabulary */}
+        {/* <img src="/logo.webp" alt="logo" className="w-64 h-w-64 object-contain rounded-3xl" /> */}
+        <img src="/logo2.jpg" alt="logo" className="w-48 h-w-48 object-contain rounded-full grayscale-[0.2]" />
       </div>
       <div className='relative bg-slate-700 shadow-xl bg-opacity-30 rounded-3xl flex flex-col justify-center items-center p-10 gap-5'>
 

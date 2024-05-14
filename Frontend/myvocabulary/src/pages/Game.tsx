@@ -170,12 +170,12 @@ export default function Game() {
           </div>
         </div>
 
-        <div className={`fixed top-0 right-0 duration-200 ${toggle ? '' : '-right-52'}`}>
+        <div className={`fixed top-0 right-0 duration-200 ${toggle ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className={`relative rounded-full w-full h-fit p-5 flex flex-col justify-start items-start gap-2 duration-200`}>
-            <div className={`absolute top-0 left-0 flex justify-start items-start py-7 -translate-x-full ${toggle ? '' : '-scale-100'}`}
+            <div className={`absolute top-0 left-0 flex justify-start items-start py-7 -translate-x-full duration-200 ${toggle ? '' : 'px-5 -scale-100'}`}
               onClick={() => togglepoint()}>
-              {/* <img src="/chevronLeft.svg" alt="chevronLeft" className='w-4 h-4 hover:scale-125 active:scale-90 cursor-pointer duration-200' /> */}
-              <img src="/chevronLeftWhite.svg" alt="chevronLeft" className='w-4 h-4 hover:scale-125 active:scale-90 cursor-pointer duration-200' />
+              {/* <img src="/chevronLeft.svg" alt="chevronLeft" className='w-6 h-6 hover:scale-125 active:scale-90 cursor-pointer duration-200' /> */}
+              <img src="/chevronLeftWhite.svg" alt="chevronLeft" className='w-6 h-6 hover:scale-125 active:scale-90 cursor-pointer duration-200' />
             </div>
 
             <div className='flex flex-row justify-start items-center gap-2 lg:gap-4 bg-slate-600 bg-opacity-30 px-4 py-2 rounded-2xl w-full'>

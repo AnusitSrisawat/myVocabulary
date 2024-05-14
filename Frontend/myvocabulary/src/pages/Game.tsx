@@ -106,7 +106,20 @@ export default function Game() {
 
   return (
     <>
-      <div className="relative flex w-screen min-h-screen flex-col items-center justify-center gap-10 p-10">
+      <div className="relative flex w-screen min-h-screen flex-col items-center justify-center gap-4 p-10">
+
+        <div className='relative shadow-xl bg-opacity-30 rounded-3xl md:hidden flex flex-row justify-between items-center gap-5 w-full md:w-auto min-w-[50vw] md:min-w-[30vw] max-w-[80vw]'>
+          <div className='flex flex-row justify-start items-center gap-2 lg:gap-4 bg-slate-700 bg-opacity-30 px-4 py-2 rounded-2xl w-full'>
+            {/* <img src="/correct.svg" alt="correct" className='w-6 h-6 hover:scale-125 active:scale-90 cursor-pointer duration-200' /> */}
+            <img src="/correctWhite.svg" alt="correct" className='w-6 h-6 hover:scale-125 active:scale-90 cursor-pointer duration-200' />
+            <div className='whitespace-nowrap'>{correctPoint}</div>
+          </div>
+          <div className='flex flex-row justify-start items-center gap-2 lg:gap-4 bg-slate-700 bg-opacity-30 px-4 py-2 rounded-2xl w-full'>
+            {/* <img src="/wrong.svg" alt="wrong" className='w-6 h-6 hover:scale-125 active:scale-90 cursor-pointer duration-200' /> */}
+            <img src="/wrongWhite.svg" alt="wrong" className='w-6 h-6 hover:scale-125 active:scale-90 cursor-pointer duration-200' />
+            <div className='whitespace-nowrap'>{wrongPoint}</div>
+          </div>
+        </div>
         <div className='relative bg-slate-700 shadow-xl bg-opacity-30 rounded-3xl flex flex-col justify-center items-center w-full md:w-auto min-w-[50vw] md:min-w-[30vw] max-w-[80vw]'>
           <div className='relative p-10 rounded-3xl flex flex-col justify-center items-center gap-6 w-full'>
 
@@ -170,7 +183,7 @@ export default function Game() {
           </div>
         </div>
 
-        <div className={`fixed top-0 right-0 duration-200 bg-slate-600 md:bg-transparent rounded-3xl ${toggle ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className={`fixed hidden md:block top-0 right-0 duration-200 bg-slate-600 md:bg-transparent rounded-3xl ${toggle ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className={`relative rounded-full w-full h-fit p-2 md:p-5 flex flex-col justify-start items-start gap-2 duration-200`}>
             <div className={`absolute top-0 left-0 flex justify-start items-start px-7 py-7 md:py-7 -translate-x-full duration-200 ${toggle ? 'md:px-0' : 'md:px-5 -scale-100'}`}
               onClick={() => togglepoint()}>
